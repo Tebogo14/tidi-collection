@@ -1523,3 +1523,23 @@
 
 	});
 }());
+
+
+function navigateTo(section) {
+  history.pushState({ section }, "", "/" + section);
+  showSection(section);
+}
+
+window.onpopstate = function(event) {
+  const section = (event.state && event.state.section) || "home";
+  showSection(section);
+};
+
+function showSection(section) {
+  // Hide all sections
+  document.querySelectorAll('section').forEach(s => s.style.display = 'none');
+
+  // Show selected section
+  const target = document.getElementById(section);
+  if (target) target.style.display = 'block';
+}
