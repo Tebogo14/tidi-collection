@@ -78,11 +78,16 @@
 	// Initialize scripts that require a loaded page
 	$window.on('load', function () {
 		// Page loader & Page transition
+
+		const path = location.pathname.replace('/', '') || 'index.html'
+
+  		history.pushState({ path }, "", "/" + path);
+
 		if (plugins.preloader.length && !isNoviBuilder) {
 			pageTransition({
 				target: document.querySelector( '.page' ),
 				delay: 0,
-				duration: 10,
+				duration: 500,
 				classIn: 'fadeIn',
 				classOut: 'fadeOut',
 				classActive: 'animated',

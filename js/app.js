@@ -3,6 +3,7 @@ function navigateTo(page) {
   const cleanPath = page.replace('.html', '');
   history.pushState({ page }, "", "/" + cleanPath);
 
+  console.log("here")
   // Load page content dynamically
   loadPage(page);
 }
@@ -21,6 +22,7 @@ function loadPage(page) {
       const doc = parser.parseFromString(html, 'text/html');
       const content = doc.querySelector('body') || doc;
       document.getElementById('content').innerHTML = content.innerHTML;
+
     })
     .catch(err => {
       document.getElementById('content').innerHTML = "<p>Page not found.</p>";
